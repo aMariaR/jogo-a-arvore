@@ -15,6 +15,8 @@ struct No {
   char palavra[TAM_MAX_PALAVRAS];
   struct No *esq;
   struct No *dir;
+  int x;
+  int y;
 };
 
 
