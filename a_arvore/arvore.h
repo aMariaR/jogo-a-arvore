@@ -3,10 +3,16 @@
 //mariaritapiekas@gmail.com
 //Data de criação: 25/06/2024
 
-#ifndef ARVORE_H
-#define ARVORE_H
+#ifndef arvore_h
+#define arvore_h
 
-typedef struct No no;
+struct No {
+  char palavra[15];
+  struct No *esq;
+  struct No *dir;
+  int x;
+  int y;
+}; typedef struct No no;
 
 //Função que cria um nó, faz seus filhos ser NULL e faz nó->palavra = p
 no *cria_no(char *p);
@@ -21,12 +27,15 @@ bool no_vazio(no *a);
 bool existe(no *a, char *p);
 
 //Função que insere p na árvore
-no *insere(no *a, char *p);
+no *insere_no(no *a, char *p);
 
 //Função que remove p da árvore
 no *remove_no(no *a, char *p);
 
 //Função que apaga a árvore inteira
 void remove_arvore(no *a);
+
+//Função que verifica se a árvore está desequilibrada
+bool arvore_desequilibrada(no *a);
 
 #endif

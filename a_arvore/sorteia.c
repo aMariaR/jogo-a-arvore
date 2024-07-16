@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "sorteia.h"
 
 char sorteia_letra()
 {
@@ -24,7 +25,7 @@ char *sorteia_silaba()
 
 char *sorteia_palavra()
 {
-    int numero_silabas = (rand() % 5) + 1; // Garante que haja pelo menos 1 sílaba
+    int numero_silabas = (rand() % 3) + 1; // Garante que haja pelo menos 1 sílaba
     char *palavra = (char *)malloc(15 * sizeof(char));
     palavra[0] = '\0'; // Inicializa a string com o terminador nulo
 
@@ -35,12 +36,4 @@ char *sorteia_palavra()
     }
 
     return palavra;
-}
-
-int main() {
-    srand(time(NULL));
-    char *palavra = sorteia_palavra();
-    printf("%s\n", palavra);
-    free(palavra); // Libera a memória da palavra após uso
-    return 0;
 }

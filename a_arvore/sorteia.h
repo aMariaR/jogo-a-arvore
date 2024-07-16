@@ -2,7 +2,7 @@
 //Maria Rita Piekas
 //mariaritapiekas@gmail.com
 
-#ifndef
+#ifndef sorteia_h
 #define sorteia_h
 
 //Função auxiliar que sorteia a letra

@@ -9,17 +9,6 @@
 #include <string.h>
 #include "arvore.h"
 
-#define TAM_MAX_PALAVRAS 15
-
-struct No {
-  char palavra[TAM_MAX_PALAVRAS];
-  struct No *esq;
-  struct No *dir;
-  int x;
-  int y;
-};
-
-
 no *cria_no(char *p)
 {
   no *a = (no *)malloc(sizeof(no));
@@ -28,7 +17,7 @@ no *cria_no(char *p)
     a->dir = NULL;
     strcpy(a->palavra, p);
     return a;
-  }
+  } else { return NULL; }
 }
 
 
@@ -52,7 +41,7 @@ bool existe(no *a, char *p)
 }
 
 
-no *insere(no *a, char *p)
+no *insere_no(no *a, char *p)
 {
   if (a == NULL) { 
     a = cria_no(p);
@@ -61,9 +50,9 @@ no *insere(no *a, char *p)
   if (strcmp(a->palavra, p) == 0) {
     return a; // Não insere duplicatas
   } else if (strcmp(a->palavra, p) < 0) {
-    a->dir = insere(a->dir, p);
+    a->dir = insere_no(a->dir, p);
   } else {
-    a->esq = insere(a->esq, p);
+    a->esq = insere_no(a->esq, p);
   }
   return a;
 }
@@ -112,4 +101,28 @@ void remove_arvore(no *a)
     remove_arvore(a->dir);
     free(a);
   }
+}
+
+
+int altura(no *a) {
+  if (a == NULL) return 0;
+  int altura_esq = altura(a->esq);
+  int altura_dir = altura(a->dir);
+  return (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
+}
+
+bool arvore_desequilibrada(no *a) {
+  if (a == NULL) return false;
+
+  int altura_esq = altura(a->esq);
+  int altura_dir = altura(a->dir);
+
+  int diferenca = altura_esq - altura_dir;
+  if (diferenca < 0) {
+    diferenca = -diferenca; // Torna a diferença positiva
+  }
+
+  if (diferenca > 2) return true;
+
+  return arvore_desequilibrada(a->esq) || arvore_desequilibrada(a->dir);
 }
