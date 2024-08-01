@@ -1,3 +1,7 @@
+//joguinho da árvore
+//compila com gcc -o jogoa jogoa.c arvore.c desenho.c sorteia.c telag.c -lallegro_font -lallegro_color -lallegro_ttf -lallegro_primitives -lallegro
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
